@@ -13,17 +13,7 @@ public class Estoque {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // @ManyToMany(fetch = FetchType.EAGER)
-	// @JoinTable(name = "user_permission", joinColumns = {@JoinColumn (name = "id_user")},
-	// 	inverseJoinColumns = {@JoinColumn (name = "id_permission")}
-	// )
-	// private List<Permission> permissions;
-	
-
-    // test this:
     @OneToMany(mappedBy = "estoque", fetch = FetchType.EAGER)
-    @JoinColumn(name = "material_id", nullable = false)
     private List<Material> materiais;
 
     @Column(name = "quantidade", nullable = false)

@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS `estoque` (
+  `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+  `quantidade` INT NOT NULL
+);
