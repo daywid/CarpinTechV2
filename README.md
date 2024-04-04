@@ -1,120 +1,76 @@
-### CarpentryAPI Documentation
 
-
+# CarpentryAPI Documentation
 
 
 ## Project Summary
 
-CarpentryAPI is a management application for a fictional carpentry called Carpintech. It offers functionalities to control employees, schedules, suppliers, customers, and materials used in the carpentry projects. The goal is to improve operational efficiency, increase visibility on projects, and maintain accurate financial records.
+CarpentryAPI is a management application for a fictional carpentry called Carpintech. Its main objective is to improve operational efficiency, increase visibility on projects, and maintain accurate financial records.
 
 ## Key Features
 
 Here are the main features of CarpentryAPI:
 
-1. **Funcionário**:
-   - Cadastro de funcionários com informações detalhadas.
-   - Atualização e exclusão de funcionários.
-   - Listagem de todos os funcionários cadastrados.
+1. **Employee**:
+   - Registration of employees with detailed information.
+   - Update and deletion of employees.
+   - Listing of all registered employees.
 
-2. **Agenda**:
-   - Cadastro de agendas associadas a funcionários.
-   - Atualização e exclusão de agendas.
-   - Listagem de todas as agendas cadastradas.
+2. **Schedule**:
+   - Registration of schedules associated with employees.
+   - Update and deletion of schedules.
+   - Listing of all registered schedules.
 
-3. **Fornecedor**:
-   - Cadastro de fornecedores de materiais.
-   - Atualização e exclusão de fornecedores.
-   - Listagem de todos os fornecedores cadastrados.
+3. **Supplier**:
+   - Registration of suppliers of materials.
+   - Update and deletion of suppliers.
+   - Listing of all registered suppliers.
 
-4. **Cliente**:
-   - Cadastro de clientes com informações detalhadas.
-   - Atualização e exclusão de clientes.
-   - Listagem de todos os clientes cadastrados.
+4. **Customer**:
+   - Registration of customers with detailed information.
+   - Update and deletion of customers.
+   - Listing of all registered customers.
 
 5. **Material**:
-   - Registro de tipos de materiais usados nos projetos.
-   - Controle de estoque e quantidade disponível.
-   - Vínculo de fornecedores aos materiais.
+   - Registration of types of materials used in projects.
+   - Control of stock and available quantity.
+   - Linking of suppliers to materials.
 
-6. **Estoque**:
-   - Controle de entrada e saída de materiais.
-   - Alertas de reabastecimento.
-   - Consulta do estoque atual.
+6. **Stock**:
+   - Control of entry and exit of materials.
+   - Alerts of replenishment.
+   - Query of current stock.
 
-7. **Tarefa**:
-   - Divisão de projetos em tarefas específicas.
-   - Atribuição de funcionários responsáveis por tarefas.
-   - Acompanhamento do status das tarefas.
+7. **Task**:
+   - Division of projects into specific tasks.
+   - Assignment of employees responsible for tasks.
+   - Tracking of task status.
 
-8. **Relatórios**:
-   - Geração de relatórios financeiros, de progresso de projeto, de uso de material, etc.
-   - Análise detalhada das informações.
+8. **Reports**:
+   - Generation of financial reports, project progress report, material usage report, etc.
+   - Detailed analysis of the information.
 
-9. **Financeiro**:
-   - Registro de transações financeiras, incluindo custos de material e salários de funcionários.
-   - Controle de pagamentos recebidos de clientes e despesas operacionais.
+9. **Financial**:
+   - Registration of financial transactions, including material costs and employee salaries.
+   - Control of payments received from customers and operational expenses.
 
-10. **Projeto**:
-   - Cadastro de projetos com informações como nome, descrição, valor, status, etc.
-   - Vínculo de tarefas a projetos.
-   - Controle de datas de cadastro, prazo e finalização.
-     
-## Diagrama de Classes UML
+10. **Project**:
+   - Registration of projects with information such as name, description, value, status, etc.
+   - Linking of tasks to projects.
+   - Control of dates of registration, deadline and completion.
 
-Aqui está um diagrama de classes UML que representa a estrutura das classes do projeto:
+## Class Diagram UML
+
+The following diagram shows the structure of the classes of the project(in portuguese(wip!)):
 
 ![](CarpinTech.jpg)
-
-## Relatório de Atividades com ajuda do ChatGPT
-
-
-### Atividade 1: Desenvolvimento das Classes de Modelo
-
-- Ajuda na criação inicial das classes models.
-- Adição das propriedades e relacionamentos necessários.
-
-### Atividade 2: Desenvolvimento dos Controllers
-
-- Criação inicial dos controllers.
-- Implementação dos métodos CRUD para cada entidade.
-
-### Atividade 3: Integração com o Banco de Dados
-
-- Ajudou na Configuração do Entity Framework Core para interagir com o SQLite (rota para interação no DbContext).
-
-### Atividade 4: Documentação
-
-- Ajudou na listagem de informações sobre as principais funcionalidades.
-- Ao ser enviado um contexto sobre a Api e suas classes, o ChatGPT fez uma listagem sobre as mesmas. 
-
-### Atividade 5: Depuração
-
-- Ajudou na correção de bugs que a equipe encontrava durante o desenvolvimento, dando dicas de como solucionar o problema.
-
-
-## Conclusão
-
-A MarcenariaAPI é uma aplicação de gerenciamento poderosa e flexível que atende às necessidades da Carpintech. Ela proporciona maior controle sobre projetos, materiais, funcionários, agendas e finanças. Com o uso da documentação da API Swagger, a interação com a API é facilitada. O projeto foi desenvolvido com sucesso, atendendo aos requisitos estabelecidos.
-
-------------------------------------------------------------------------------------
-
-
-
-
-
 
 ## For studies:
 
 
-
-To Do
+# To Do
 
 - Change the backend to Java Spring.
 - Redo some Service Logic.
 - Create tests and validations for every class.
 - Improve the front-end.
 - Deploy it.
-
-
-
-
