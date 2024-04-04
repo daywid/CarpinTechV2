@@ -1,0 +1,24 @@
+# server:
+#   port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/carpintech_api?useTimezone=true&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2KB
+      max-file-size: 200MB
+      max-request-size: 215MB
+springdoc:
+  pathsToMatch:
+    - /api/**
+  swagger-ui:
+    use-root-path: true

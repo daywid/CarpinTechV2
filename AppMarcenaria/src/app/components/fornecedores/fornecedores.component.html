@@ -1,0 +1,164 @@
+<div class="container p-5 mat-elevation-z2">
+    <div class="row">
+      <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+        Cadastro de Fornecedor
+        <h6>{{ tituloFormulario }}</h6>
+        <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+          <div class="form-group">
+            <label>Nome</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="nome"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              class="form-control form-control-sm"
+              formControlName="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Telefone</label>
+            <input
+              type="tel"
+              class="form-control form-control-sm"
+              formControlName="telefone"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Endereço</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="endereco"
+            />
+          </div>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-6">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">
+                  Salvar
+                </button>
+              </div>
+              <div class="col-6 pl-1">
+                <button type="button" class="btn btn-sm btn-light">Voltar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Operations with Suppliers Container -->
+      <div class="col-6 border border-light rounded p-5 shadow">
+        <h6>Operações com Fornecedores</h6>
+        <button class="btn btn-sm btn-primary" (click)="listarFornecedores()">
+          Listar Fornecedores
+        </button>
+
+        <div *ngFor="let fornecedor of fornecedoresList">
+          <div class="fornecedor-item">
+            <div>
+              <strong>Nome do fornecedor:</strong> {{ fornecedor.nome }}
+            </div>
+            <div><strong>Email do fornecedor:</strong> {{ fornecedor.email }}</div>
+            <div>
+              <strong>Telefone do fornecedor:</strong> {{ fornecedor.telefone }}
+            </div>
+            <div>
+              <strong>Endereço do fornecedor:</strong> {{ fornecedor.endereco }}
+            </div>
+            <div class="fornecedor-actions">
+              <!-- Edit Button -->
+              <button class="btn btn-sm btn-info" (click)="editarFornecedor(fornecedor)">
+                Editar
+              </button>
+              <!-- Delete Button -->
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="deletarFornecedor(fornecedor.id)"
+              >
+                Excluir
+              </button>
+            </div>
+          </div>
+          <hr />
+          <!-- Adds a horizontal line between each supplier -->
+        </div>
+
+        <!-- Edit Form -->
+        <div *ngIf="fornecedorSelecionado">
+          <h6>Editar Fornecedor</h6>
+          <form [formGroup]="formularioEdit" (ngSubmit)="enviarFormularioEdit()">
+            <!-- Edit Fields -->
+
+            <div class="form-group">
+              <label>Id do Fornecedor</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="id"
+                readonly
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Nome</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="nome"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                class="form-control form-control-sm"
+                formControlName="email"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Telefone</label>
+              <input
+                type="tel"
+                class="form-control form-control-sm"
+                formControlName="telefone"
+              />
+            </div>
+
+            <div class="form-group">
+              <label>Endereço</label>
+              <input
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="endereco"
+              />
+            </div>
+
+            <!-- Save Edit Button -->
+            <button type="submit" class="btn btn-sm btn-success">
+              Salvar Edição
+            </button>
+
+            <!-- Back Button -->
+            <button
+              type="button"
+              class="btn btn-sm btn-light"
+              (click)="voltarParaLista()"
+            >
+              Voltar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,170 @@
+<div class="container p-5 mat-elevation-z2">
+  <div class="row">
+    <div
+      class="col-6 border border-light rounded p-5 shadow"
+      *ngIf="formulario"
+    >
+       Cadastro de Agenda
+      <h6>{{ tituloFormulario }}</h6>
+      <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+        <div class="form-group">
+          <label>Descrição</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="descricao"
+          />
+        </div>
+
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Escolha uma data"
+            formControlName="data"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <div class="form-group">
+          <label>Tipo</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="tipo"
+          />
+        </div>
+        <div class="form-group">
+          <label>FuncionarioId</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="funcionarioId"
+          />
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Salvar
+              </button>
+            </div>
+            <div class="col-6 pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Novo Container -->
+    <div class="col-6 border border-light rounded p-5 shadow">
+      <h6>Operações com Agendas</h6>
+      <button class="btn btn-sm btn-primary" (click)="listarAgendas()">
+        Listar Agendas
+      </button>
+
+      <div *ngFor="let agenda of agendasList">
+        <div class="agenda-item">
+          <div>
+            <strong>Descrição da agenda:</strong> {{ agenda.descricao }}
+          </div>
+          <div><strong>Data da agenda:</strong> {{ agenda.data }}</div>
+          <div>
+            <strong>Id do funcionário:</strong> {{ agenda.funcionarioId }}
+          </div>
+          <div class="agenda-actions">
+            <!-- Botão de edição -->
+            <button class="btn btn-sm btn-info" (click)="editarAgenda(agenda)">
+              Editar
+            </button>
+            <!-- Botão de exclusão -->
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="deletarAgenda(agenda.id)"
+            >
+              Excluir
+            </button>
+          </div>
+        </div>
+        <hr />
+        <!-- Adiciona uma linha horizontal entre cada agenda -->
+      </div>
+
+      <!-- Formulário de Edição -->
+      <div *ngIf="agendaSelecionada">
+        <h6>Editar Agenda</h6>
+        <form [formGroup]="formularioEdit" (ngSubmit)="enviarFormularioEdit()">
+          <!-- Campos de edição -->
+
+          <div class="form-group">
+            <label>Id da Agenda</label>
+            <input
+              type=""
+              class="form-control form-control-sm"
+              formControlName="id"
+              readonly
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Descrição</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="descricao"
+            />
+          </div>
+          <mat-form-field>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              placeholder="Escolha uma data"
+              formControlName="data"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="form-group">
+            <label>Tipo</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="tipo"
+            />
+          </div>
+          <div class="form-group">
+            <label>FuncionarioId</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="funcionarioId"
+            />
+          </div>
+
+          <!-- Botão de Salvar Edição -->
+          <button type="submit" class="btn btn-sm btn-success">
+            Salvar Edição
+          </button>
+
+          <!-- Botão de Voltar -->
+          <button
+            type="button"
+            class="btn btn-sm btn-light"
+            (click)="voltarParaLista()"
+          >
+            Voltar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

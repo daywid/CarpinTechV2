@@ -1,0 +1,167 @@
+<div class="container p-5 mat-elevation-z2">
+  <div class="row">
+    <div
+      class="col-6 border border-light rounded p-5 shadow"
+      *ngIf="formulario"
+    >
+      Cadastro de Funcionario
+      <h6>{{ tituloFormulario }}</h6>
+      <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
+        <div class="form-group">
+          <label>Nome</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="nome"
+          />
+        </div>
+        <div class="form-group">
+          <label>Funcao</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="funcao"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Salario</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="salario"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Horas trabalhadas</label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            formControlName="horasTrabalhadas"
+          />
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <button type="submit" class="btn btn-sm btn-outline-secondary">
+                Salvar
+              </button>
+            </div>
+            <div class="col-6 pl-1">
+              <button type="button" class="btn btn-sm btn-light">Voltar</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- Novo Container -->
+    <div class="col-6 border border-light rounded p-5 shadow">
+      <h6>Operações com Funcionarios</h6>
+      <button class="btn btn-sm btn-primary" (click)="listarFuncionarios()">
+        Listar Funcionários
+      </button>
+
+      <div *ngFor="let funcionario of funcionariosList">
+        <div class="funcionario-item">
+          <div>
+            <strong>Nome do funcionario:</strong> {{ funcionario.nome }}
+          </div>
+          <div><strong>Função:</strong> {{ funcionario.funcao }}</div>
+          <div><strong>Salario:</strong> {{ funcionario.salario }}</div>
+          <div>
+            <strong>Horas trabalhadas:</strong>
+            {{ funcionario.horasTrabalhadas }}
+          </div>
+          <div class="funcionario-actions">
+            <!-- Botão de edição -->
+            <button
+              class="btn btn-sm btn-info"
+              (click)="editarFuncionario(funcionario)"
+            >
+              Editar
+            </button>
+            <!-- Botão de exclusão -->
+            <button
+              class="btn btn-sm btn-danger"
+              (click)="deletarFuncionario(funcionario.id)"
+            >
+              Excluir
+            </button>
+          </div>
+        </div>
+        <hr />
+        <!-- Adiciona uma linha horizontal entre funcionarios -->
+      </div>
+
+      <!-- Formulário de Edição -->
+      <div *ngIf="funcionarioSelecionado">
+        <h6>Editar Funcionario</h6>
+        <form [formGroup]="formularioEdit" (ngSubmit)="enviarFormularioEdit()">
+          <!-- Campos de edição -->
+
+          <div class="form-group">
+            <label>Id do Funcionario</label>
+            <input
+              type=""
+              class="form-control form-control-sm"
+              formControlName="id"
+              readonly
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Nome</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="nome"
+            />
+          </div>
+          <div class="form-group">
+            <label>Funcao</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="funcao"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Salario</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="salario"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Horas trabalhadas</label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              formControlName="horasTrabalhadas"
+            />
+          </div>
+
+          <!-- Botão de Salvar Edição -->
+          <button type="submit" class="btn btn-sm btn-success">
+            Salvar Edição
+          </button>
+
+          <!-- Botão de Voltar -->
+          <button
+            type="button"
+            class="btn btn-sm btn-light"
+            (click)="voltarParaLista()"
+          >
+            Voltar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
