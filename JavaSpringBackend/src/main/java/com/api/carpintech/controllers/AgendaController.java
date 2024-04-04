@@ -11,13 +11,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/agenda")
@@ -51,7 +46,7 @@ public class AgendaController
     }
 
     @GetMapping("/encontrar/{id}")
-    public AgendaVO findById(@PathVariable UUID id)
+    public AgendaVO findById(@PathVariable Long id)
     {
 //        if(!agendaRepository.existsById(id))
 //        {
@@ -63,7 +58,7 @@ public class AgendaController
     }
 
     @PutMapping("/atualizar/{id}")
-    public ResponseEntity<Agenda> updateAgenda(@PathVariable UUID id, @RequestBody Agenda agenda)
+    public ResponseEntity<Agenda> updateAgenda(@PathVariable Long id, @RequestBody Agenda agenda)
     {
         if(!agendaRepository.existsById(id))
         {
@@ -75,7 +70,7 @@ public class AgendaController
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Agenda> deleteAgenda(@PathVariable UUID id)
+    public ResponseEntity<Agenda> deleteAgenda(@PathVariable Long id)
     {
 
     //

@@ -13,7 +13,7 @@ public class AgendaVO extends RepresentationModel<AgendaVO> implements Serializa
 {
 
     @Mapping("id")
-    private UUID id;
+    private Long id;
 
     private Long key;
     private String descricao;
@@ -21,11 +21,11 @@ public class AgendaVO extends RepresentationModel<AgendaVO> implements Serializa
     private String tipo;
     private Funcionario funcionario;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

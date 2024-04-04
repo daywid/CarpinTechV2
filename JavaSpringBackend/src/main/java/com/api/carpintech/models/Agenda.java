@@ -16,40 +16,40 @@
 */
 package com.api.carpintech.models;
 
-import org.hibernate.annotations.GenericGenerator;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "agenda")
 public class Agenda {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", nullable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "descricao", nullable = false, length = 100)
     private String descricao;
     /**
      * Test with Calendar from java util, 
      * Joda Time is an option too.
     */
+    @Column(name = "date", nullable = false)
     private Calendar date;
+
+    @Column(name = "tipo", nullable = false, length = 20)
     private String tipo;
 
     @ManyToOne
+    @JoinColumn(name = "funcionario_id", nullable = false)
     private Funcionario funcionario;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
     public String getDescricao() {

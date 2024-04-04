@@ -1,10 +1,7 @@
 package com.api.carpintech.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.UUID;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -13,12 +10,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "fornecedor")
 public class Fornecedor {
-    
+
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", nullable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
@@ -30,11 +26,11 @@ public class Fornecedor {
     @Column(name = "endereco", nullable = false, length = 100)
     private String endereco;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

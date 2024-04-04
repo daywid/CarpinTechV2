@@ -1,0 +1,5 @@
+@JoinTable: Este é usado para configurar uma tabela de associação quando você tem uma relação ManyToMany. No seu caso, você está usando uma relação OneToMany e ManyToOne, portanto, não precisa de @JoinTable. Você só precisa mapear o lado ManyToOne (Material) e especificar o @JoinColumn no lado inverso (lado OneToMany), que é Estoque.
+
+@JoinColumn: Isso é usado para indicar a coluna na tabela filho (neste caso, Material) que é usada para manter a chave estrangeira para a tabela pai (neste caso, Estoque). No lado ManyToOne (Material), você especifica a coluna estoque_id como a chave estrangeira que se refere ao id da tabela Estoque.
+
+Com esses ajustes, a relação entre Estoque e Material deve funcionar conforme o esperado. Certifique-se de ajustar os getters e setters e os demais atributos conforme necessário para a sua aplicação.

@@ -2,23 +2,17 @@ package com.api.carpintech.models;
 
 import java.util.UUID;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-import jakarta.persistence.Id;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "financeiro")
 public class Financeiro {
-    
+
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", nullable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
 
     @Column(name = "custos_materiais", nullable = false)
     private Double custosMateriais;
@@ -41,11 +35,11 @@ public class Financeiro {
 
     public Financeiro() {}
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

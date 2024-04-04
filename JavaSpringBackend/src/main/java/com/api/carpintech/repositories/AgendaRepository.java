@@ -5,4 +5,4 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 @Repository
-public interface AgendaRepository extends JpaRepository<Agenda, UUID> {}
+public interface AgendaRepository extends JpaRepository<Agenda, Long> {}

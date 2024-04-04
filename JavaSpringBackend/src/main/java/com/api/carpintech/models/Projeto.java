@@ -1,15 +1,8 @@
 package com.api.carpintech.models;
 
 import com.api.carpintech.models.enums.ProjetoStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
 import java.util.UUID;
 import java.util.List;
 
@@ -18,12 +11,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Table(name = "projeto")
 public class Projeto {
-    
+
   @Id
-  @GeneratedValue(generator = "uuid2")
-  @GenericGenerator(name = "uuid2", strategy = "uuid2")
-  @Column(name = "id", nullable = false, columnDefinition = "BINARY(16)")
-  private UUID id;  
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
 
   @Column(name = "nome", nullable = false, length = 100)
   private String nome;
@@ -35,20 +27,17 @@ public class Projeto {
   private Double valor;
 
   // Test this:
-  @OneToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "projeto_id", joinColumns = {@JoinColumn(name = "tarefas_id")}, 
-  inverseJoinColumns = {@JoinColumn(name = "id_projeto")})
-  @Column(name = "tarefas", nullable = false)
+  @OneToMany(mappedBy = "projeto", fetch = FetchType.EAGER)
   private List<Tarefa> tarefas;
 
   @Column(name = "status", nullable = false)
   private ProjetoStatus status;
 
-  public UUID getId() {
+  public Long getId() {
     return id;
   }
 
-  public void setId(UUID id) {
+  public void setId(Long id) {
     this.id = id;
   }
 

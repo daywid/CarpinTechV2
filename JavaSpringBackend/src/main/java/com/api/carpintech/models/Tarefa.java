@@ -1,28 +1,18 @@
 package com.api.carpintech.models;
 
+import jakarta.persistence.*;
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression.DateTime;
 import java.util.UUID;
 
 import org.hibernate.annotations.GenericGenerator;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tarefa")
 public class Tarefa {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Column(name = "id", nullable = false, columnDefinition = "BINARY(16)")
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
@@ -40,14 +30,14 @@ public class Tarefa {
     private DateTime dataFinalizacao;
 
     @ManyToOne
-    // @JoinColumn(name = "projeto_id", nullable = false)
+    @JoinColumn(name = "projeto_id", nullable = false)
     private Projeto projeto;
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
