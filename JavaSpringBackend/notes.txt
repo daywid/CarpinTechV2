@@ -3,3 +3,6 @@
 @JoinColumn: Isso é usado para indicar a coluna na tabela filho (neste caso, Material) que é usada para manter a chave estrangeira para a tabela pai (neste caso, Estoque). No lado ManyToOne (Material), você especifica a coluna estoque_id como a chave estrangeira que se refere ao id da tabela Estoque.
 
 Com esses ajustes, a relação entre Estoque e Material deve funcionar conforme o esperado. Certifique-se de ajustar os getters e setters e os demais atributos conforme necessário para a sua aplicação.
+
+https://carlosschults.net/pt/testes-unitarios-csharp-intro-tdd/
+https://carlosschults.net/pt/value-objects-ferramenta/

@@ -12,14 +12,17 @@ import java.util.UUID;
 public class AgendaVO extends RepresentationModel<AgendaVO> implements Serializable
 {
 
+    private static final long serialVersionUID = 1L;
+
     @Mapping("id")
     private Long id;
-
     private Long key;
     private String descricao;
     private Calendar date;
     private String tipo;
     private Funcionario funcionario;
+
+    public AgendaVO(){}
 
     public Long getId() {
         return id;

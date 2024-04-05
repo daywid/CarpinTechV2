@@ -12,7 +12,6 @@ public class Relatorio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
     @Column(name = "conteudo", nullable = false, length = 100)
     private String conteudo;
     
