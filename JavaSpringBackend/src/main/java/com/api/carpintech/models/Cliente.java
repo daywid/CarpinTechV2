@@ -23,7 +23,6 @@ package com.api.carpintech.models;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import java.util.UUID;
-
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -31,7 +30,6 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
 
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
@@ -49,7 +47,6 @@ public class Cliente {
     }
 
     public Cliente() {}
-
     public String getNome() {
         return nome;
     }

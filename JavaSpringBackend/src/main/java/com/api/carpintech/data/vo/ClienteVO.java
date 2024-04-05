@@ -1,13 +1,17 @@
 package com.api.carpintech.data.vo;
 
 import com.github.dozermapper.core.Mapping;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class ClienteVO
+public class ClienteVO extends RepresentationModel<AgendaVO> implements Serializable
 {
+    @Serial
     private static final long serialVersionUID = 1L;
-    @Mapping
+    @Mapping("id")
     private Long id;
     private String nome;
     private String telefone;
@@ -44,11 +48,12 @@ public class ClienteVO
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ClienteVO clienteVO)) return false;
+        if (!super.equals(o)) return false;
         return Objects.equals(getId(), clienteVO.getId()) && Objects.equals(getNome(), clienteVO.getNome()) && Objects.equals(getTelefone(), clienteVO.getTelefone()) && Objects.equals(getEndereco(), clienteVO.getEndereco());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNome(), getTelefone(), getEndereco());
+        return Objects.hash(super.hashCode(), getId(), getNome(), getTelefone(), getEndereco());
     }
 }

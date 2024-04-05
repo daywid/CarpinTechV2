@@ -20,7 +20,6 @@ import jakarta.persistence.*;
 
 import java.util.Calendar;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "agenda")

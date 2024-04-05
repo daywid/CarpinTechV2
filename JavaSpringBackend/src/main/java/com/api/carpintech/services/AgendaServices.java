@@ -41,7 +41,6 @@ public class AgendaServices
         return vo;
     }
 
-
     public PagedModel<EntityModel<AgendaVO>> findAll(Pageable pageable)
     {
         logger.info("Find all agendas");

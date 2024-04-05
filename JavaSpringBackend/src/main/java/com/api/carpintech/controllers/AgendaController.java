@@ -21,11 +21,6 @@ public class AgendaController
 {
     @Autowired
     private AgendaServices service;
-    private final AgendaRepository agendaRepository;
-    public AgendaController(AgendaRepository agendaRepository) {
-        this.agendaRepository = agendaRepository;
-    }
-
     @GetMapping("/listar")
     public ResponseEntity<PagedModel<EntityModel<AgendaVO>>> findAll
     (
@@ -43,27 +38,20 @@ public class AgendaController
     {
         return service.create(agenda);
     }
-
     @GetMapping("/encontrar/{id}")
     public AgendaVO findById(@PathVariable Long id)
     {
-//
         return service.findById(id);
     }
-
     @PutMapping()
     public AgendaVO updateAgenda(@RequestBody AgendaVO agenda)
     {
         return service.update(agenda);
     }
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<Agenda> deleteAgenda(@PathVariable(value = "id") Long id)
+    public ResponseEntity<AgendaVO> deleteAgenda(@PathVariable(value = "id") Long id)
     {
-        if(!agendaRepository.existsById(id))
-        {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        agendaRepository.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

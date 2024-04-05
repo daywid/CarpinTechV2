@@ -4,6 +4,7 @@ import com.api.carpintech.models.Funcionario;
 import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Objects;
@@ -12,6 +13,7 @@ import java.util.UUID;
 public class AgendaVO extends RepresentationModel<AgendaVO> implements Serializable
 {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Mapping("id")
