@@ -1,5 +1,6 @@
 package com.api.carpintech.models;
 
+import com.api.carpintech.models.enums.Status;
 import jakarta.persistence.*;
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression.DateTime;
 import java.util.UUID;
@@ -21,7 +22,7 @@ public class Tarefa {
     private String descricao;
 
     @Column(name = "status", nullable = false)
-    private String status;
+    private Status status;
 
     @Column(name = "dataInicio")
     private DateTime dataInicio;
@@ -57,11 +58,11 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -89,6 +90,4 @@ public class Tarefa {
         this.projeto = projeto;
     }
 
-    
-    
 }

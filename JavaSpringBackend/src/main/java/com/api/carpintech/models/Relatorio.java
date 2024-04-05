@@ -1,11 +1,8 @@
 package com.api.carpintech.models;
 
-import com.api.carpintech.models.enums.RelatorioStatus;
+import com.api.carpintech.models.enums.Status;
 import jakarta.persistence.*;
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression.DateTime;
-import org.hibernate.annotations.GenericGenerator;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "relatorio")
@@ -27,7 +24,7 @@ public class Relatorio {
     private Funcionario funcionario;
     
     @Column(name = "status", nullable = false)
-    private RelatorioStatus status;
+    private Status status;
     
     @Column(name = "titulo", nullable = false, length = 100)
     private String titulo;
@@ -64,11 +61,11 @@ public class Relatorio {
         this.funcionario = funcionario;
     }
 
-    public RelatorioStatus getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(RelatorioStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
