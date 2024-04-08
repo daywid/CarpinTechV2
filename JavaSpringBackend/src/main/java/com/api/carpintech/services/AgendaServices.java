@@ -13,7 +13,6 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.stereotype.Service;
-import com.api.carpintech.controllers.AgendaController.*;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -46,18 +45,17 @@ public class AgendaServices
         logger.info("Find all agendas");
 
         var agendaPage = agendaRepository.findAll(pageable);
-        var agendaVOPage = agendaPage.map(p -> {
-            AgendaVO agendaVO = DozerMapper.parseObject(p, AgendaVO.class);
-            return agendaVO.add(
-                    linkTo(methodOn(AgendaController.class).findById(agendaVO.getId())).withSelfRel()
-            );
-        });
+        var agendaVOPage = agendaPage.map(p -> DozerMapper.parseObject(p, AgendaVO.class));
+        agendaVOPage.map(
+                p -> p.add(
+                        linkTo(methodOn(AgendaController.class)
+                                .findById(p.getKey())).withSelfRel())
+        );
         Link link = linkTo(
                 methodOn(AgendaController.class)
                         .findAll(pageable.getPageNumber(),
                                 pageable.getPageSize(),
                                 "asc")).withSelfRel();
-
         return assembler.toModel(agendaVOPage, link);
     }
 

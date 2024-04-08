@@ -1,28 +1,25 @@
 package com.api.carpintech.controllers;
 
-import com.api.carpintech.data.vo.AgendaVO;
-import com.api.carpintech.models.Agenda;
-import com.api.carpintech.repositories.AgendaRepository;
-import com.api.carpintech.services.AgendaServices;
+import com.api.carpintech.data.vo.FuncionarioVO;
+import com.api.carpintech.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/agenda")
-public class AgendaController
+@RequestMapping("/api/funcionario")
+public class FuncionarioController
 {
     @Autowired
-    private AgendaServices service;
+    private FuncionarioService service;
     @GetMapping("/listar")
-    public ResponseEntity<PagedModel<EntityModel<AgendaVO>>> findAll
+    public ResponseEntity<PagedModel<EntityModel<FuncionarioVO>>> findAll
     (
         @RequestParam(value = "page", defaultValue = "0") Integer page,
         @RequestParam(value = "limit", defaultValue = "12") Integer limit,
@@ -35,24 +32,24 @@ public class AgendaController
     }
 
     @PostMapping("/cadastrar")
-    public AgendaVO createAgenda(@RequestBody AgendaVO agenda)
+    public FuncionarioVO createFuncionario(@RequestBody FuncionarioVO funcionario)
     {
-        return service.create(agenda);
+        return service.create(funcionario);
     }
 
     @GetMapping("/encontrar/{id}")
-    public AgendaVO findById(@PathVariable Long id)
+    public FuncionarioVO findById(@PathVariable Long id)
     {
         return service.findById(id);
     }
 
     @PutMapping()
-    public AgendaVO updateAgenda(@RequestBody AgendaVO agenda)
+    public FuncionarioVO updateFuncionario(@RequestBody FuncionarioVO funcionario)
     {
-        return service.update(agenda);
+        return service.update(funcionario);
     }
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<AgendaVO> deleteAgenda(@PathVariable(value = "id") Long id)
+    public ResponseEntity<FuncionarioVO> deleteFuncionario(@PathVariable(value = "id") Long id)
     {
         service.delete(id);
         return ResponseEntity.noContent().build();
