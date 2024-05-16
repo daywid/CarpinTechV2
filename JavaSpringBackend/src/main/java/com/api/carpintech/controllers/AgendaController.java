@@ -1,8 +1,6 @@
 package com.api.carpintech.controllers;
 
 import com.api.carpintech.data.vo.AgendaVO;
-import com.api.carpintech.models.Agenda;
-import com.api.carpintech.repositories.AgendaRepository;
 import com.api.carpintech.services.AgendaServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +9,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
