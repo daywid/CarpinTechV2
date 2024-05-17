@@ -34,9 +34,13 @@ export class AgendasComponent implements OnInit {
   enviarFormulario(): void {
     const agenda: Agenda = this.formulario.value;
     const observer: Observer<Agenda> = {
+
+
+
       next(_result): void {
         alert('Agenda salva com sucesso.'); // Atualiza a lista após salvar
       },
+
       error(_error): void {
         alert('Erro ao salvar!');
       },

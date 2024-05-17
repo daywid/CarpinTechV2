@@ -1,212 +1,151 @@
 <div class="container p-5 mat-elevation-z2">
-    <div class="row">
-      <div
-        class="col-6 border border-light rounded p-5 shadow"
-        *ngIf="formulario"
-      >
-         Cadastro de Projeto
-         <h6>{{ tituloFormulario }}</h6>
-         
-        <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
-  
-            <div class="form-group">
-                <label>Nome</label>
-                <input
-                type="text"
-                class="form-control form-control-sm"
-                formControlName="nome"
-                />
-            </div>
-    
-            <div class="form-group">
-                <label>Descrição</label>
-                <input
-                type="text"
-                class="form-control form-control-sm"
-                formControlName="nome"
-                />
-            </div>
+  <div class="row">
+    <div class="col-6 border border-light rounded p-5 shadow" *ngIf="formulario">
+      Cadastro de Projeto
+      <h6>{{ tituloFormulario }}</h6>
 
-            <div class="form-group">
-                <label>Valor</label>
-                <input
-                type="number"
-                class="form-control form-control-sm"
-                formControlName="valor"
-                />
-            </div>
+      <form [formGroup]="formulario" (ngSubmit)="enviarFormulario()">
 
-            <div class="form-group">
-                <label>Status</label>
-                <select
-                class="form-control form-control-sm"
-                formControlName="status"
-                >
-                <option value=0 selected>Nao Iniciado</option>
-                <option value=1>Iniciado</option>
-                <option value=2>Finalizado</option>
-                </select>
-            </div>
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" class="form-control form-control-sm" formControlName="nome" />
+        </div>
 
-            <div class="form-group" data-provide="datepicker">
-                <label>Data Cadastro</label>
-                <input type="date" class="form-control" formControlName="dataCadastro">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
+        <div class="form-group">
+          <label>Descrição</label>
+          <input type="text" class="form-control form-control-sm" formControlName="desc" />
+        </div>
 
-            <div class="form-group" data-provide="datepicker">
-                <label>Data Prazo</label>
-                <input type="date" class="form-control" formControlName="dataPrazo">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
+        <div class="form-group">
+          <label>Valor</label>
+          <input type="number" class="form-control form-control-sm" formControlName="valor" />
+        </div>
 
-            <div class="form-group" data-provide="datepicker">
-                <label>Data Finalização</label>
-                <input type="date" class="form-control" formControlName="dataFinalizacao">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select class="form-control form-control-sm" formControlName="status">
+            <option value="0" selected>Não Iniciado</option>
+            <option value="1">Iniciado</option>
+            <option value="2">Finalizado</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Data Cadastro</label>
+          <input type="date" class="form-control" formControlName="dataCadastro">
+        </div>
+
+        <div class="form-group">
+          <label>Data Prazo</label>
+          <input type="date" class="form-control" formControlName="dataPrazo">
+        </div>
+
+        <div class="form-group">
+          <label>Data Finalização</label>
+          <input type="date" class="form-control" formControlName="dataFinalizacao">
+        </div>
+
+        <div *ngIf="formulario.errors?.['dataInvalida']" class="alert alert-danger">
+          A data de finalização não pode ser antes da data de cadastro.
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <button type="submit" class="btn btn-sm btn-outline-secondary" [disabled]="formulario.invalid">Salvar</button>
             </div>
-  
-          <div class="container">
-            <div class="row">
-              <div class="col-6">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">
-                  Salvar
-                </button>
-              </div>
-              <div class="col-6 pl-1">
-                <button type="button" class="btn btn-sm btn-light">Voltar</button>
-              </div>
+            <div class="col-6 pl-1">
+              <button type="button" class="btn btn-sm btn-light" (click)="voltarParaLista()">Voltar</button>
             </div>
           </div>
-        </form>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-6 border border-light rounded p-5 shadow">
+      <h6>Operações com Projetos</h6>
+      <button class="btn btn-sm btn-primary" (click)="listarProjetos()">
+        Listar Projetos
+      </button>
+
+      <div *ngFor="let projeto of projetosList">
+        <div class="projeto-item">
+          <div><strong>ID do projeto:</strong> {{ projeto.id }}</div>
+          <div><strong>Nome do projeto:</strong> {{ projeto.nome }}</div>
+          <div><strong>Descrição do projeto:</strong> {{ projeto.desc }}</div>
+          <div><strong>Valor do projeto:</strong> {{ projeto.valor }}</div>
+          <div><strong>Status do projeto:</strong> {{ projeto.status }}</div>
+          <div><strong>Data de inicio do projeto:</strong> {{ projeto.dataCadastro }}</div>
+          <div><strong>Prazo do projeto:</strong> {{ projeto.dataPrazo }}</div>
+          <div><strong>Data de finalização do projeto:</strong> {{ projeto.dataFinalizacao }}</div>
+          <div class="projeto-actions">
+            <button class="btn btn-sm btn-info" (click)="editarProjeto(projeto)">
+              Editar
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="excluirProjeto(projeto.id)">
+              Excluir
+            </button>
+          </div>
+        </div>
+        <hr />
       </div>
-  
-      <!-- Novo Container -->
-      <div class="col-6 border border-light rounded p-5 shadow">
-        <h6>Operações com Projetos</h6>
-        <button class="btn btn-sm btn-primary" (click)="listarProjetos()">
-          Listar Projetos
-        </button>
-  
-        <div *ngFor="let projeto of projetosList">
-          <div class="projeto-item">
-            <div><strong>ID do projeto:</strong> {{ projeto.id }}</div>
-            <div><strong>Nome do projeto:</strong> {{ projeto.nome }}</div>
-            <div><strong>Descrição do projeto:</strong> {{ projeto.desc }}</div>
-            <div><strong>Valor do projeto:</strong> {{ projeto.valor }}</div>
-            <div><strong>Status do projeto:</strong> {{ projeto.status }}</div>
-            <div><strong>Data de inicio do projeto:</strong> {{ projeto.dataCadastro }}</div>
-            <div><strong>Prazo do projeto:</strong> {{ projeto.dataPrazo }}</div>
-            <div><strong>Data de finalização do projeto:</strong> {{ projeto.dataFinalizacao }}</div>
-            <div class="projeto-actions">
-              <!-- Botão de edição -->
-              <button class="btn btn-sm btn-info" (click)="editarProjeto(projeto)">
-                Editar
-              </button>
-              <!-- Botão de exclusão -->
-              <button
-                class="btn btn-sm btn-danger"
-                (click)="excluirProjeto(projeto.id)"
-              >
-                Excluir
-              </button>
-            </div>
+
+      <div *ngIf="projetoSelecionado">
+        <h6>Editar Projeto</h6>
+        <form [formGroup]="formularioEdit" (ngSubmit)="salvarEdicao()">
+
+          <div class="form-group">
+            <label>Nome</label>
+            <input type="text" class="form-control form-control-sm" formControlName="nome" />
           </div>
-          <hr />
-          <!-- Adiciona uma linha horizontal entre cada projeto -->
-        </div>
-  
-        <!-- Formulário de Edição -->
-        <div *ngIf="projetoSelecionado">
-          <h6>Editar Projeto</h6>
-          <form [formGroup]="formularioEdit" (ngSubmit)="salvarEdicao()">
-  
-            <div class="form-group">
-                <label>Nome</label>
-                <input
-                type="text"
-                class="form-control form-control-sm"
-                formControlName="nome"
-                />
-            </div>
-    
-            <div class="form-group">
-                <label>Descrição</label>
-                <input
-                type="text"
-                class="form-control form-control-sm"
-                formControlName="nome"
-                />
-            </div>
 
-            <div class="form-group">
-                <label>Valor</label>
-                <input
-                type="number"
-                class="form-control form-control-sm"
-                formControlName="valor"
-                />
-            </div>
+          <div class="form-group">
+            <label>Descrição</label>
+            <input type="text" class="form-control form-control-sm" formControlName="desc" />
+          </div>
 
-            <div class="form-group">
-                <label>Status</label>
-                <select
-                class="form-control form-control-sm"
-                formControlName="status"
-                >
-                <option value=0 selected>Nao Iniciado</option>
-                <option value=1>Iniciado</option>
-                <option value=2>Finalizado</option>
-                </select>
-            </div>
+          <div class="form-group">
+            <label>Valor</label>
+            <input type="number" class="form-control form-control-sm" formControlName="valor" />
+          </div>
 
-            <div class="form-group" data-provide="datepicker">
-                <label>Data Cadastro</label>
-                <input type="date" class="form-control" formControlName="dataCadastro">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select class="form-control form-control-sm" formControlName="status">
+              <option value="0" selected>Não Iniciado</option>
+              <option value="1">Iniciado</option>
+              <option value="2">Finalizado</option>
+            </select>
+          </div>
 
-            <div class="form-group" data-provide="datepicker">
-                <label>Data Prazo</label>
-                <input type="date" class="form-control" formControlName="dataPrazo">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
+          <div class="form-group">
+            <label>Data Cadastro</label>
+            <input type="date" class="form-control" formControlName="dataCadastro">
+          </div>
 
-            <div class="form-group" data-provide="datepicker">
-                <label>Data Finalização</label>
-                <input type="date" class="form-control" formControlName="dataFinalizacao">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
-            </div>
-  
-            <!-- Botão de Salvar Edição -->
-            <button type="button" class="btn btn-sm btn-success" 
-            (click)="salvarEdicao()">
-              Salvar Edição
-            </button>
-  
-            <!-- Botão de Voltar -->
-            <button
-              type="button"
-              class="btn btn-sm btn-light"
-              (click)="voltarParaLista()"
-            >
-              Voltar
-            </button>
-          </form>
-        </div>
+          <div class="form-group">
+            <label>Data Prazo</label>
+            <input type="date" class="form-control" formControlName="dataPrazo">
+          </div>
+
+          <div class="form-group">
+            <label>Data Finalização</label>
+            <input type="date" class="form-control" formControlName="dataFinalizacao">
+          </div>
+
+          <div *ngIf="formularioEdit.errors?.['dataInvalida']" class="alert alert-danger">
+            A data de finalização não pode ser antes da data de cadastro.
+          </div>
+
+          <button type="submit" class="btn btn-sm btn-success" [disabled]="formularioEdit.invalid">
+            Salvar Edição
+          </button>
+
+          <button type="button" class="btn btn-sm btn-light" (click)="voltarParaLista()">
+            Voltar
+          </button>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>

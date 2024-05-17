@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Estoque } from 'src/app/models/estoque/Estoque';
-import { EstoquesService } from 'src/app/models/estoque/estoques.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProjetosService } from 'src/app/models/projetos/projetos.service';
 import { Projeto } from 'src/app/models/projetos/Projeto';
 
@@ -12,7 +10,7 @@ import { Projeto } from 'src/app/models/projetos/Projeto';
 })
 export class ProjetosComponent implements OnInit {
   formulario!: FormGroup;
-  formularioEdit !: FormGroup;
+  formularioEdit!: FormGroup;
   tituloFormulario: string = '';
   projetoSelecionado: Projeto | null = null;
   projetosList: Projeto[] = [];
@@ -21,34 +19,41 @@ export class ProjetosComponent implements OnInit {
 
   ngOnInit(): void {
     this.tituloFormulario = 'Novo Projeto';
-    this.formulario = new FormGroup({
-      id:new FormControl(null),
-      nome:new FormControl(null),
-      desc:new FormControl(null),
-      valor:new FormControl(null),
-      status:new FormControl(null),
-      dataCadastro:new FormControl(null),
-      dataPrazo:new FormControl(null),
-      dataFinalizacao:new FormControl(null)
-    });
+    this.formulario = this.formBuilder.group({
+      id: new FormControl(null),
+      nome: new FormControl(null),
+      desc: new FormControl(null),
+      valor: new FormControl(null),
+      status: new FormControl(null),
+      dataCadastro: new FormControl(null, Validators.required),
+      dataPrazo: new FormControl(null),
+      dataFinalizacao: new FormControl(null),
+    }, { validators: this.dataValidator });
 
-    this.formularioEdit = new FormGroup({
-      id:new FormControl(null),
-      nome:new FormControl(null),
-      desc:new FormControl(null),
-      valor:new FormControl(null),
-      status:new FormControl(null),
-      dataCadastro:new FormControl(null),
-      dataPrazo:new FormControl(null),
-      dataFinalizacao:new FormControl(null)
-    });
+    this.formularioEdit = this.formBuilder.group({
+      id: new FormControl(null),
+      nome: new FormControl(null),
+      desc: new FormControl(null),
+      valor: new FormControl(null),
+      status: new FormControl(null),
+      dataCadastro: new FormControl(null, Validators.required),
+      dataPrazo: new FormControl(null),
+      dataFinalizacao: new FormControl(null),
+    }, { validators: this.dataValidator });
 
     this.listarProjetos();
   }
 
+  dataValidator(group: FormGroup): { [key: string]: boolean } | null {
+    const dataCadastro = group.get('dataCadastro')?.value;
+    const dataFinalizacao = group.get('dataFinalizacao')?.value;
+    return dataCadastro && dataFinalizacao && dataFinalizacao < dataCadastro ? { dataInvalida: true } : null;
+  }
+
   enviarFormulario(): void {
+    if (this.formulario.invalid) return;
     const projeto: Projeto = this.formulario.value;
-    projeto.status = Math.floor(projeto.status)
+    projeto.status = Math.floor(projeto.status);
 
     this.projetosService.cadastrar(projeto).subscribe(
       () => {
@@ -60,9 +65,10 @@ export class ProjetosComponent implements OnInit {
   }
 
   salvarEdicao(): void {
+    if (this.formularioEdit.invalid) return;
     const projeto: Projeto = this.formularioEdit.value;
-    projeto.status = Math.floor(projeto.status)
-    console.log(JSON.stringify(projeto))
+    projeto.status = Math.floor(projeto.status);
+    console.log(JSON.stringify(projeto));
 
     this.projetosService.atualizar(projeto).subscribe(
       () => {
@@ -104,6 +110,6 @@ export class ProjetosComponent implements OnInit {
 
   voltarParaLista(): void {
     this.formulario.reset();
-    this.projetoSelecionado = null; 
+    this.projetoSelecionado = null;
   }
 }
